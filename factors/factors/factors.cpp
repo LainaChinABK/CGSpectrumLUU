@@ -24,6 +24,7 @@ int main()
             cin.ignore(100, '\n');
         }
 
+        // only break if input is positive
         else if (n > 0)
         {
             break;

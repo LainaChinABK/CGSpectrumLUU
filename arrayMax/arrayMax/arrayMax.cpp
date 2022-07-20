@@ -6,16 +6,13 @@
 using namespace std;
 
 void populate(int arr[], int n);
-void display(int arr[], int n);
 int getMax(int arr[], int n);
 
 int main()
 {
     const int n = 5;
     int arr[n];
-
     populate(arr, n);
-    display(arr, n);
 
     int max = getMax(arr, n);
     cout << "the biggest number in the array is " << max << endl;
@@ -29,15 +26,6 @@ void populate(int arr[], int n)
         cin >> arr[i];
         assert(!cin.fail());
     }
-}
-
-void display(int arr[], int n)
-{
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
 }
 
 int getMax(int arr[], int n)

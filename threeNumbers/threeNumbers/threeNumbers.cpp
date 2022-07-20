@@ -8,7 +8,9 @@ using namespace std;
 int main()
 {
     // Get three numbers from user
-    int a, b, c;
+    int a = 0;
+    int b = 0;
+    int c = 0;
 
     cout << "First number: ";
     cin >> a;

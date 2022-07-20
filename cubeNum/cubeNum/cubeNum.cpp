@@ -9,7 +9,7 @@ int cube(int n);
 int main()
 {
     // Get number from user
-    int n;
+    int n = 0;
     cout << "Number: ";
     cin >> n;
 

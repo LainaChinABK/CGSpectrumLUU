@@ -4,6 +4,8 @@
 #include <iostream>
 using namespace std;
 
+int cube(int n);
+
 int main()
 {
     // Get number from user
@@ -12,5 +14,10 @@ int main()
     cin >> n;
 
     // Print answer
-    cout << n << " cubed is " << n * n * n << endl;
+    cout << n << " cubed is " << cube(n) << endl;
+}
+
+int cube(int n)
+{
+    return n * n * n;
 }

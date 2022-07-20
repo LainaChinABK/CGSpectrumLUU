@@ -2,24 +2,27 @@
 //
 
 #include <iostream>
+using namespace std;
+
+// function declarations
+string getName();
+int getWeapon();
+int getArmor();
 
 int main()
 {
     // ask player for name
+    string name = getName();
  
     // start with 100 health
+    int health = 100;
  
-    // pick a weapon:
-    //     1 bow
-    //     2 sword
-    //     3 axe
-    
-    // pick armor:
-    //     1 light
-    //     2 medium
-    //     3 heavy
+    // select weapon and armor
+    int weapon = getWeapon();
+    int armor = getArmor();
 
     // print name, weapon, and armor
+    cout << name << ", you will be using weapon #" << weapon << " and armor #" << armor << endl;
 
     // face an enemy with 100 health
 
@@ -30,13 +33,73 @@ int main()
     // show player health and enemy health
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+string getName()
+{
+    string name;
+    cout << "What is your name? ";
+    cin >> name;
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+    return name;
+}
+
+// pick a weapon:
+//     (1) bow
+//     (2) sword
+//     (3) axe
+int getWeapon()
+{
+    int weapon = 0;
+
+    // loop until player selects valid weapon
+    do
+    {
+        cout << "Choose your weapon:" << endl;
+        cout << "   (1) bow" << endl;
+        cout << "   (2) sword" << endl;
+        cout << "   (3) axe" << endl;
+
+        cin >> weapon;
+
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(100, '\n');
+        }
+
+        else if (weapon > 0 && weapon < 4)
+        {
+            return weapon;
+        }
+    } while (true);
+}
+
+// pick armor:
+//     (1) light
+//     (2) medium
+//     (3) heavy
+int getArmor()
+{
+    int armor = 0;
+
+    // loop until player selects valid armor
+    do
+    {
+        cout << "Choose your armor:" << endl;
+        cout << "   (1) light" << endl;
+        cout << "   (2) medium" << endl;
+        cout << "   (3) heavy" << endl;
+
+        cin >> armor;
+
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(100, '\n');
+        }
+
+        else if (armor > 0 && armor < 4)
+        {
+            return armor;
+        }
+    } while (true);
+}

@@ -16,6 +16,18 @@ int main()
     {
         cout << "Please enter a positive integer: ";
         cin >> n;
+
+        if (cin.fail())
+        {
+            cout << "That's not a number!" << endl;
+            cin.clear();
+            cin.ignore(100, '\n');
+        }
+
+        else
+        {
+            break;
+        }
     } while (n < 1);
 
     factors(n);

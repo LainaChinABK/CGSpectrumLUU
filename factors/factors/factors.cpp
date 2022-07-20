@@ -24,11 +24,11 @@ int main()
             cin.ignore(100, '\n');
         }
 
-        else
+        else if (n > 0)
         {
             break;
         }
-    } while (n < 1);
+    } while (true);
 
     factors(n);
 }

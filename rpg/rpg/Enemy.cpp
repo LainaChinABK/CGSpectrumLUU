@@ -1,10 +1,13 @@
 #include "Enemy.h"
-#include <stdlib.h>
+#include <iostream>
+#include <time.h>
 
 Enemy::Enemy()
-	: Character(rand() % 4, rand() % 4)
+	: Character()
 {
-
+	srand(time(NULL));
+	SetWeapon(rand() % 4);
+	SetArmor(rand() % 4);
 }
 
 Enemy::~Enemy()

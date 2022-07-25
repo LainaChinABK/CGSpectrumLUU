@@ -7,6 +7,8 @@ protected:
 	int m_weapon;
 	int m_armor;
 
+	bool m_alive;
+
 public:
 	Character(int weapon = 0, int armor = 0);
 	~Character();
@@ -17,5 +19,9 @@ public:
 	int GetHealth() { return m_health; }
 	int GetWeapon() { return m_weapon; }
 	int GetArmor() { return m_armor; }
+
+	bool IsAlive() { return m_alive; }
+
+	void TakeDamage(int damage);
 };
 

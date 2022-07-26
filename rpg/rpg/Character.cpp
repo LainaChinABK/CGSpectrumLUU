@@ -1,5 +1,4 @@
 #include "Character.h"
-#include <iostream>
 
 // diff weapon options and their IDs
 constexpr int sword = 1;
@@ -25,7 +24,10 @@ Character::Character(int weapon, int armor)
 Character::~Character()
 {
 	delete m_weapon;
+	m_weapon = nullptr;
+
 	delete m_armor;
+	m_armor = nullptr;
 }
 
 void Character::DisplayInfo()

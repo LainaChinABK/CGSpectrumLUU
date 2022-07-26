@@ -1,5 +1,4 @@
 #include "Player.h"
-#include <iostream>
 
 // diff weapon options and their IDs
 constexpr int sword = 1;

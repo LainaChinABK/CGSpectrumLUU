@@ -1,5 +1,5 @@
 #pragma once
-#include <string>
+#include <iostream>
 
 class Item
 {
@@ -9,8 +9,8 @@ protected:
 
 public:
 	Item(int id);
-	~Item();
+	virtual ~Item();
 
-	int GetID() { return m_id; }
-	std::string GetName() { return m_name; }
+	int GetID() const { return m_id; }
+	std::string GetName() const { return m_name; }
 };

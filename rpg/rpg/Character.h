@@ -1,6 +1,7 @@
 #pragma once
 #include "Weapon.h"
 #include "Armor.h"
+#include <iostream>
 
 class Character
 {
@@ -21,17 +22,17 @@ public:
 
 	void DisplayInfo();
 
-	int GetHealth() { return m_curHealth; }
-	bool IsAlive() { return m_alive; }
+	int GetHealth() const { return m_curHealth; }
+	bool IsAlive() const { return m_alive; }
 
 	void SetWeapon(int weapon);
 	void SetArmor(int armor);
 
-	std::string GetWeaponName() { return m_weapon->GetName(); }
-	int GetWeaponID() { return m_weapon->GetID(); }
+	std::string GetWeaponName() const { return m_weapon->GetName(); }
+	int GetWeaponID() const { return m_weapon->GetID(); }
 
-	std::string GetArmorName() { return m_armor->GetName(); }
-	int GetArmorID() { return m_armor->GetID(); }
+	std::string GetArmorName() const { return m_armor->GetName(); }
+	int GetArmorID() const { return m_armor->GetID(); }
 
 	void TakeDamage(int damage);
 };

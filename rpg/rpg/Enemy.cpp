@@ -1,5 +1,4 @@
 #include "Enemy.h"
-#include <iostream>
 #include <time.h>
 
 Enemy::Enemy()

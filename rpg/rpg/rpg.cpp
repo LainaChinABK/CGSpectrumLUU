@@ -5,9 +5,6 @@
 #include "Player.h"
 #include "Enemy.h"
 
-// global variables
-constexpr int g_rounds = 5;
-
 // function declarations
 void PlayGame(Player* player);
 void Encounter(Player* player);
@@ -29,10 +26,31 @@ int main()
 
 void PlayGame(Player* player)
 {
-    for (int i = 0; i < 3 && player->IsAlive(); i++)
+    // initialize variable
+    char rest = 'n';
+
+    // max 3 encounters
+    for (int i = 0; i < 3; i++)
     {
         Encounter(player);
-        // TODO: option to exit or rest
+
+        if (!player->IsAlive())
+        {
+            std::cout << "You died." << std::endl;
+            break;
+        }
+
+        // TODO: add option to exit
+
+        // option to rest
+        std::cout << "You have " << player->GetHealth() << " health." << std::endl;
+        std::cout << "Would you like to rest before your next encounter? (y/n)" << std::endl;
+        std::cin >> rest;
+
+        if (tolower(rest) == 'y')
+        {
+            player->Rest();
+        }
     }
 }
 
@@ -43,7 +61,8 @@ void Encounter(Player* player)
     std::cout << "An enemy appeared!" << std::endl;
     enemy->DisplayInfo();
 
-    for (int round = 1; round <= g_rounds && player->IsAlive() && enemy->IsAlive(); round++)
+    // unlimited rounds
+    for (int round = 1; player->IsAlive() && enemy->IsAlive(); round++)
     {
         Round(round, player, enemy);
     }
@@ -60,5 +79,5 @@ void Round(int round, Player* player, Enemy* enemy)
 
     // show player health and enemy health
     std::cout << "Your health: " << player->GetHealth() << std::endl;
-    std::cout << "Enemy health: " << enemy->GetHealth() << std::endl;
+    std::cout << "Enemy health: " << enemy->GetHealth() << std::endl << std::endl;
 }

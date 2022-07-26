@@ -11,5 +11,6 @@ public:
 	Item(int id);
 	~Item();
 
+	int GetID() { return m_id; }
 	std::string GetName() { return m_name; }
 };

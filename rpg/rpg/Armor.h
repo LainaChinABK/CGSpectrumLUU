@@ -1,10 +1,11 @@
 #pragma once
 #include "Item.h"
 
-class Weapon :
+class Armor :
     public Item
 {
 public:
-    Weapon(int id);
-    ~Weapon();
+    Armor(int id);
+    ~Armor();
 };
+

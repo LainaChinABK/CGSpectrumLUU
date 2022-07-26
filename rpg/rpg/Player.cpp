@@ -1,9 +1,22 @@
 #include "Player.h"
 #include <iostream>
 
+// diff weapon options and their IDs
+constexpr int sword = 1;
+constexpr int axe = 2;
+
+// diff armor options and their IDs
+constexpr int light = 1;
+constexpr int medium = 2;
+constexpr int heavy = 3;
+
+// constructor calls functions to choose name, weapon, and armor
 Player::Player()
 	: Character()
 {
+    m_minDamage = 5;
+    m_maxDamage = 10;
+
     ChooseName();
     ChooseWeapon();
     ChooseArmor();
@@ -31,14 +44,13 @@ void Player::ChooseWeapon()
     do
     {
         std::cout << "Choose your weapon:" << std::endl;
-        std::cout << "   (1) bow" << std::endl;
-        std::cout << "   (2) sword" << std::endl;
-        std::cout << "   (3) axe" << std::endl;
+        std::cout << "   (" << sword << ") sword" << std::endl;
+        std::cout << "   (" << axe << ") axe" << std::endl;
 
         std::cin >> weapon;
-    } while (weapon < 1 || weapon > 3);
+    } while (weapon < 1 || weapon > 2);
 
-    m_weapon = weapon;
+    SetWeapon(weapon);
 }
 
 void Player::ChooseArmor()
@@ -49,12 +61,12 @@ void Player::ChooseArmor()
     do
     {
         std::cout << "Choose your armor:" << std::endl;
-        std::cout << "   (1) light" << std::endl;
-        std::cout << "   (2) medium" << std::endl;
-        std::cout << "   (3) heavy" << std::endl;
+        std::cout << "   (" << light << ") light" << std::endl;
+        std::cout << "   (" << medium << ") medium" << std::endl;
+        std::cout << "   (" << heavy << ") heavy" << std::endl;
 
         std::cin >> armor;
     } while (armor < 1 || armor > 3);
 
-    m_armor = armor;
+    SetArmor(armor);
 }

@@ -1,18 +1,14 @@
 #include "Weapon.h"
 
-constexpr int bow = 1;
-constexpr int sword = 2;
-constexpr int axe = 3;
+// diff weapon options and their IDs
+constexpr int sword = 1;
+constexpr int axe = 2;
 
 Weapon::Weapon(int id)
 	: Item(id)
 {
 	switch (id)
 	{
-	case bow:
-		m_name = "Bow";
-		break;
-
 	case sword:
 		m_name = "Sword";
 		break;
@@ -22,6 +18,7 @@ Weapon::Weapon(int id)
 		break;
 
 	default:
+		m_id = 0;
 		m_name = "None";
 		break;
 	}

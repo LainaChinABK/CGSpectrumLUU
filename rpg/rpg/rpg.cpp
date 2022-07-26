@@ -5,55 +5,60 @@
 #include "Player.h"
 #include "Enemy.h"
 
+// global variables
 constexpr int g_rounds = 5;
 
-void PlayGame(Player* player, Enemy* enemy);
-void Encounter(Player* player, Enemy* enemy);
-void Round(Player* player, Enemy* enemy);
+// function declarations
+void PlayGame(Player* player);
+void Encounter(Player* player);
+void Round(int round, Player* player, Enemy* enemy);
 
 int main()
 {
+    // initialize new player
     Player* player = new Player();
+    std::cout << "Player: " << player->GetName() << std::endl;
+    player->DisplayInfo();
+    
+    // play game
+    PlayGame(player);
 
-    // print name, weapon, and armor
-    std::cout << player->GetName() << ", you will be using weapon #" << player->GetWeapon() << " and armor #" << player->GetArmor() << std::endl;
+    // free memory
+    delete player;
+}
 
+void PlayGame(Player* player)
+{
+    for (int i = 0; i < 3 && player->IsAlive(); i++)
+    {
+        Encounter(player);
+        // TODO: option to exit or rest
+    }
+}
+
+void Encounter(Player* player)
+{
     // face an enemy with 100 health
     Enemy* enemy = new Enemy();
-    std::cout << "Enemy has weapon #" << enemy->GetWeapon() << " and armor #" << enemy->GetArmor() << std::endl;
+    std::cout << "An enemy appeared!" << std::endl;
+    enemy->DisplayInfo();
 
-    PlayGame(player, enemy);
-    // deal damage to enemy 5 times
-    // deal 10 damage with each hit
-    // take 7 damage from each hit
+    for (int round = 1; round <= g_rounds && player->IsAlive() && enemy->IsAlive(); round++)
+    {
+        Round(round, player, enemy);
+    }
 
-    // show player health and enemy health
-
-    delete player;
+    // free memory
     delete enemy;
 }
 
-void PlayGame(Player* player, Enemy* enemy)
+void Round(int round, Player* player, Enemy* enemy)
 {
-    for (int i = 0; i < 3; i++)
-    {
-        Encounter(player, enemy);
-    }
-}
-
-void Encounter(Player* player, Enemy* enemy)
-{
-    for (int i = 0; i < g_rounds; i++)
-    {
-        Round(player, enemy);
-    }
-}
-
-void Round(Player* player, Enemy* enemy)
-{
+    std::cout << std::endl << "Round " << round << ":" << std::endl;
     player->TakeDamage(7);
     enemy->TakeDamage(10);
 
-    std::cout << "Player health: " << player->GetHealth() << std::endl;
+    // show player health and enemy health
+    std::cout << "Your health: " << player->GetHealth() << std::endl;
     std::cout << "Enemy health: " << enemy->GetHealth() << std::endl;
 }

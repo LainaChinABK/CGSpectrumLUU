@@ -12,7 +12,6 @@ constexpr int heavy = 3;
 Character::Character(int weapon, int armor)
 	: m_curHealth(100)
 	, m_maxHealth(100)
-	, m_alive(true)
 	, m_minDamage(0)
 	, m_maxDamage(0)
 	, m_weapon(new Weapon(weapon))
@@ -87,7 +86,6 @@ void Character::TakeDamage(int damage)
 	if (damage >= m_curHealth)
 	{
 		m_curHealth = 0;
-		m_alive = false;
 	}
 	else
 	{

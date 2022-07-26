@@ -14,8 +14,9 @@ int main()
 {
     // initialize new player
     Player* player = new Player();
-    std::cout << "Player: " << player->GetName() << std::endl;
+    std::cout << std::endl << "Player: " << player->GetName() << std::endl;
     player->DisplayInfo();
+    std::cout << std::endl;
     
     // play game
     PlayGame(player);

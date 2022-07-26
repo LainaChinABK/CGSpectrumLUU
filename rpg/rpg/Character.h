@@ -8,7 +8,6 @@ class Character
 protected:
 	int m_curHealth;
 	int m_maxHealth;
-	bool m_alive;
 
 	int m_minDamage;
 	int m_maxDamage;
@@ -23,7 +22,7 @@ public:
 	void DisplayInfo();
 
 	int GetHealth() const { return m_curHealth; }
-	bool IsAlive() const { return m_alive; }
+	bool IsAlive() const { return m_curHealth > 0; }
 
 	void SetWeapon(int weapon);
 	void SetArmor(int armor);

@@ -7,7 +7,6 @@
 
 // function declarations
 void Continue();
-
 void PlayGame(Player* player);
 void Encounter(Player* player);
 void Round(int round, Player* player, Enemy* enemy);
@@ -38,8 +37,8 @@ void Continue()
 
 void PlayGame(Player* player)
 {
-    // initialize variable
-    char rest = 'n';
+    // initialize y/n flag
+    char flag = 'n';
 
     // max 3 encounters
     for (int i = 0; i < 3; i++)
@@ -53,14 +52,22 @@ void PlayGame(Player* player)
             break;
         }
 
-        // TODO: add option to exit
+        // option to exit
+        std::cout << "Continue playing? (y/n)" << std::endl;
+        std::cin >> flag;
+
+        if (tolower(flag) == 'n')
+        {
+            return;
+        }
+
 
         // option to rest
         std::cout << "You have " << player->GetHealth() << " health." << std::endl;
         std::cout << "Would you like to rest before your next encounter? (y/n)" << std::endl;
-        std::cin >> rest;
+        std::cin >> flag;
 
-        if (tolower(rest) == 'y')
+        if (tolower(flag) == 'y')
         {
             player->Rest();
         }

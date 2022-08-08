@@ -2,15 +2,13 @@
 #include "Weapon.h"
 #include "Armor.h"
 #include <iostream>
+#include <time.h>
 
 class Character
 {
 protected:
 	int m_curHealth;
 	int m_maxHealth;
-
-	int m_minDamage;
-	int m_maxDamage;
 	
 	Weapon* m_weapon;
 	Armor* m_armor;
@@ -26,6 +24,9 @@ public:
 
 	void SetWeapon(int weapon);
 	void SetArmor(int armor);
+
+	Weapon* GetWeapon() { return m_weapon; }
+	Armor* GetArmor() { return m_armor; }
 
 	std::string GetWeaponName() const { return m_weapon->GetName(); }
 	int GetWeaponID() const { return m_weapon->GetID(); }

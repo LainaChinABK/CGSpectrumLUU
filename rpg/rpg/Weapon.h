@@ -7,4 +7,10 @@ class Weapon :
 public:
     Weapon(int id);
     ~Weapon();
+
+    int GetDamage();
+
+private:
+    int m_minDamage;
+    int m_maxDamage;
 };

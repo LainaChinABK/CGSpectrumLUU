@@ -13,9 +13,6 @@ constexpr int heavy = 3;
 Player::Player()
 	: Character()
 {
-    m_minDamage = 5;
-    m_maxDamage = 10;
-
     ChooseName();
     ChooseWeapon();
     ChooseArmor();

@@ -12,8 +12,6 @@ constexpr int heavy = 3;
 Character::Character(int weapon, int armor)
 	: m_curHealth(100)
 	, m_maxHealth(100)
-	, m_minDamage(0)
-	, m_maxDamage(0)
 	, m_weapon(new Weapon(weapon))
 	, m_armor(new Armor(armor))
 {
@@ -40,22 +38,6 @@ void Character::SetWeapon(int weapon)
 {
 	delete m_weapon;
 	m_weapon = new Weapon(weapon);
-
-	// switch statement maybe not necessary here but will be easier to add weapon options
-	switch (weapon)
-	{
-	case sword:
-		m_minDamage = 4;
-		m_maxDamage = 6;
-		break;
-
-	case axe:
-		m_minDamage = 2;
-		m_maxDamage = 8;
-		break;
-
-	// default is no weapon so damage doesn't change
-	}
 }
 
 void Character::SetArmor(int armor)

@@ -13,6 +13,8 @@ void Round(int round, Player* player, Enemy* enemy);
 
 int main()
 {
+    srand(time(NULL));
+
     // initialize new player
     Player* player = new Player();
     std::cout << std::endl << "Player: " << player->GetName() << std::endl;
@@ -33,6 +35,7 @@ void Continue()
     std::cout << "Press any key to continue" << std::endl;
     std::cin.ignore();
     std::cin.get();
+    system("cls");
 }
 
 void PlayGame(Player* player)
@@ -96,8 +99,9 @@ void Round(int round, Player* player, Enemy* enemy)
 {
     std::cout << std::endl << "Round " << round << ":" << std::endl;
 
-    int pDamage = 10;
-    int eDamage = 7;
+    int pDamage = player->GetWeapon()->GetDamage();
+    int eDamage = enemy->GetWeapon()->GetDamage();
+
     player->TakeDamage(eDamage);
     enemy->TakeDamage(pDamage);
 

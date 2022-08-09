@@ -60,7 +60,6 @@ int main(int argc, char** argv)
                 enet_host_flush(server);
             }
 
-            /* Wait up to 1000 milliseconds for an event. */
             while (enet_host_service(server, &event, 1000) > 0)
             {
                 switch (event.type)

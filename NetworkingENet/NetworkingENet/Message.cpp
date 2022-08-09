@@ -15,5 +15,6 @@ Message::~Message()
 
 void Message::DisplayContent()
 {
+	// TODO: fix time display
 	std::cout << m_time << " " + m_sender << ": " + m_text << std::endl;
 }

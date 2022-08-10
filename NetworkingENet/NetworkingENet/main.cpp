@@ -1,6 +1,5 @@
 #include <enet/enet.h>
 #include <iostream>
-#include <thread>
 #include "Message.h"
 
 ENetAddress address;
@@ -50,7 +49,7 @@ int main(int argc, char** argv)
             {
                 std::cin >> serverMessage;
 
-                Message message = Message(serverName, serverMessage);
+                Message message = Message(serverName, std::time(nullptr), serverMessage);
 
                 packet = enet_packet_create(&message,
                     sizeof(Message) + 1,
@@ -126,7 +125,7 @@ int main(int argc, char** argv)
             {
                 std::cin >> clientMessage;
 
-                Message message = Message(clientName, clientMessage);
+                Message message = Message(clientName, std::time(nullptr), clientMessage);
 
                 packet = enet_packet_create(&message,
                     sizeof(Message) + 1,

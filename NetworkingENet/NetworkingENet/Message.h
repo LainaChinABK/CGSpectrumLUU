@@ -5,7 +5,7 @@
 class Message
 {
 public:
-	Message(std::string sender, std::string text);
+	Message(std::string sender, std::time_t time, std::string text);
 	~Message();
 
 	std::string GetSender() { return m_sender; }

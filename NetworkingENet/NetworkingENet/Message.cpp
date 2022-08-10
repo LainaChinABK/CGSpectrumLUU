@@ -1,8 +1,8 @@
 #include "Message.h"
 
-Message::Message(std::string sender, std::string text)
+Message::Message(std::string sender, std::time_t time, std::string text)
 	: m_sender(sender)
-	, m_time(std::time(nullptr))
+	, m_time(time)
 	, m_text(text)
 {
 

@@ -10,6 +10,7 @@ ENetPeer* Peer = nullptr;
 bool IsServer = false;
 thread* PacketThread = nullptr;
 
+int maxNum = 10;
 bool GameOver = false;
 bool CanGuess = false;
 int players = 0;
@@ -86,8 +87,7 @@ struct CheckGuessPacket : public GamePacket
         Type = PHT_Check;
     }
 
-    int guess = 0;
-    int ans = 0;
+    bool correct = false;
 };
 
 struct GameOverPacket : public GamePacket
@@ -154,7 +154,7 @@ void HandleReceivePacket(const ENetEvent& event)
         }
         if (RecGamePacket->Type == PHT_Prompt)
         {
-            cout << "I'm thinking of a number between 1 and 100 (inclusive)..." << endl;
+            cout << "I'm thinking of a number between 1 and " << maxNum << " (inclusive)..." << endl;
             CanGuess = true;
         }
         if (RecGamePacket->Type == PHT_Guess)
@@ -165,7 +165,7 @@ void HandleReceivePacket(const ENetEvent& event)
                 if (IsServer)
                 {
                     CheckGuess(GuessPacket->val);
-                    // this if statement is probably redundant and needs to go somewhere else
+                    // this if statement is probably redundant and/or needs to go somewhere else
                     if (GuessPacket->val == num)
                     {
                         BroadcastGameOverPacket();
@@ -184,14 +184,14 @@ void HandleReceivePacket(const ENetEvent& event)
             CheckGuessPacket* CheckPacket = (CheckGuessPacket*)(event.packet->data);
             if (CheckPacket)
             {
-                if (CheckPacket->guess == CheckPacket->ans)
+                if (CheckPacket->correct)
                 {
-                    cout << "You got it! The number was " << CheckPacket->ans << endl;
+                    cout << "You got it!" << endl;
                     GameOver = true;
                 }
                 else
                 {
-                    cout << CheckPacket->guess << " was incorrect. Please try again." << endl;
+                    cout << "Incorrect. Please try again." << endl;
                     CanGuess = true;
                 }
             }
@@ -262,8 +262,7 @@ void SendGuess(int guess)
 void CheckGuess(int guess)
 {
     CheckGuessPacket* CheckPacket = new CheckGuessPacket();
-    CheckPacket->guess = guess;
-    CheckPacket->ans = num;
+    CheckPacket->correct = (guess == num);
     ENetPacket* packet = enet_packet_create(CheckPacket,
         sizeof(CheckGuessPacket),
         ENET_PACKET_FLAG_RELIABLE);
@@ -310,7 +309,7 @@ void ServerProcessPackets()
                 // Potential issue if player(s) disconnect and then rejoin?
                 if (players == 2)
                 {
-                    num = rand() % 100 + 1;
+                    num = rand() % maxNum + 1;
                     // TODO: broadcast message below instead of just printing to server
                     cout << "Let the game begin!" << endl;
                     PromptPlayers();
